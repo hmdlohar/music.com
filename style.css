@@ -1,0 +1,313 @@
+:root{
+    --color-background2: #000000;
+    --color-background3: #743d0d;
+    --color1: #523114;
+    --color-font1: #fffeff;
+    --color-font2: #522c00;
+    --color3: #3f3f40;
+    --color-background-all: #fbeeca;
+    --color5: black;
+    --color-font1-hover: #efc464;
+    --color-font2-hover: yellow;
+    --color8: yellow;
+    --color9: yellow;
+    --color10: yellow;
+}
+body{
+    margin: 0px;
+    max-width:100%;
+}
+body::before{
+    content: "";
+    background-image: url(img/music-background5.jpg);
+    background-size: 100% 100%;
+    background-attachment: fixed;
+    height:105%;
+    width:105%;
+    position: fixed;
+    top:-10px;
+    left:-10px;
+    z-index: -1;
+}
+.header{
+    height:80px;
+    width:100%;
+    background-color: var(--color-background2);
+    position: fixed;
+    -box-shadow: 0px 1px 10px var(--color-font1-hover);
+    text-shadow: 1px 1px 1px var(--color-font1-hover);
+    opacity: 1;
+}
+.header h1{
+    color:green;
+    font-size: 40px;
+    margin: 10px;
+    float: left;
+    margin-left:20px;
+}
+.main-titled::before{
+    content: "";
+    background-image: url(img/music-background-blur.png);
+    background-size: cover;
+    position: absolute;
+    top:-10px;
+    left:-10px;
+    height:inherit;
+    width:inherit;
+}
+.login-area{
+    float:right;
+    margin-top:20px;
+    margin-right: 20px;
+}
+.login-btn{
+    color:var(--color-font1);
+    background-color: var(--color-background2);
+    font-size:25px;
+    text-decoration: none;
+    padding: 5px;
+    margin: 5px;
+    border-radius: 15px 15px 15px 15px;
+    padding-left: 8px;
+    padding-right: 8px;
+    font-weight: bold;
+    box-shadow: 1px 1px 4px var(--color-font1-hover);
+}
+.login-btn:hover{
+    color: var(--color-font1-hover);
+    text-shadow: 1px 1px 1px var(--color-font2);
+}
+.header-menu{
+    float:left;
+}
+.header-menu ul{
+    list-style-type: none;
+}
+.header-menu-item{
+    display: inline-block;
+    font-size: 18px;
+    -background: linear-gradient(to right,var(--color-background-all) -200% ,var(--color-background2) 50%,var(--color-background-all) 300% ); 
+    font-weight: bold;
+    padding:10px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    margin-left:5px;
+    transition: all 0.5s;
+    color:var(--color-font1);
+    text-shadow: none;
+    -box-shadow: 0px 1px 1px var(--color-font1);
+}
+.header-menu-item a{
+    text-decoration: none;
+}
+.header-menu-item:hover{
+    color: var(--color-background2);
+    background:linear-gradient(to right,var(--color-font1) 1% ,var(--color-font1) 5%,var(--color-background2) 250% );
+}
+
+.sidebar{
+    position: fixed;
+    top:0px;
+    transition: all 0.3s;
+    -border: 1px solid gold;
+    -width:20%;
+    height:100%;
+    float:left;
+    -background-color: var(--color-background2);
+    background-color: rgba(0,0,0,0);
+    -box-shadow: 2px -2px 2px var(--color-font1-hover);
+    text-shadow: 1px 1px 1px var(--color-font1-hover);
+    opacity: 1;
+}
+.sidebar-li-collaps{
+    width:50px;
+}
+.sidebar ul{
+    margin-top:130px;
+    list-style-type: none;
+    display: block;
+    list-style: none;
+    padding-left: 10px;
+}
+.sidebar ul li{
+    background-color: var(--color-background2);
+    opacity: 0.5;
+    height:50px;
+    font-size:40px;
+    -border: 1px solid gold;
+    overflow: hidden;
+    margin-right:10px;
+    margin-bottom:20px;
+    color: var(--color-font1);
+    border-bottom: 1px solid var(--color-background2);
+    box-shadow: 1px 1px 5px var(--color-background-all);
+    border-radius: 10px;
+}
+.sidebar ul li a{
+    text-decoration: none;
+    color:var(--color-color5);
+}
+.sidebar ul li i{
+    width:50px;
+    text-align: center;
+    cursor: pointer;
+}
+.sidebar ul li:hover , .sidebar ul li a:hover  {
+    color:var(--color-font1-hover);
+    text-shadow: 1px 1px 1px var(--color-font2);
+    background-color: var(--color-background3);
+}
+.menu-icon{
+    padding: 20px;
+    font-size: 35px;
+    float:left;
+    margin-top:5px;
+    color: var(--color-font1);
+}
+.menu-icon:hover{
+    color:var(--color-font1-hover);
+    cursor: pointer;
+}
+.main-area{
+    padding-top:110px;
+    padding-left:100px;
+    height:100%;
+    filter: alpha(opacity=50);
+}
+.container-area{
+    height:300px;
+    overflow-y: hidden;
+    overflow-x: scroll;
+    width:1000px;
+}
+.container-inner{
+    height:300px;
+    width:5000px;
+}
+.container-item{
+    display: inline-block;
+    border: 1px solid blue;
+    padding: 5px;
+    padding-bottom: 20px;
+}
+.container-item span{
+    display: block;
+    text-align: center;
+    color:#9bd32f;
+    font-size: 20px;
+}
+.container-item img{
+    height:180px;
+    width:180px;
+    border-radius: 180px;
+}
+
+.music-player{
+	height:50px;
+	position: fixed;
+	bottom: 0px;
+	background-color: var(--color-background2);
+	width:100%;
+	text-align: center;
+    user-select: none;
+    
+}
+.music-player-controls{
+	position: absolute;
+	left: 10px;
+	bottom:0px;
+}
+.control{
+    display: inline-block;
+    font-size:30px;
+    color: var(--color-font1);
+    margin-left:30px;
+    margin-bottom: 10px;
+    cursor: pointer;
+}
+.control:hover{
+    text-shadow: 1px 1px 3px var(--color-background-all);
+}
+.volume-control{
+    display: inline-block;
+}
+.player-timeline{
+    display: inline-block;
+    width:400px;
+    height:20px;
+    background: linear-gradient(rgba(0,0,0,0) 40%, var(--color-font1)   50%, rgba(0,0,0,0) 60%);
+    margin-left:55px;
+    text-align: left;
+    -background-color: green;
+}
+#timeline-circle{
+    font-size:20px;
+    cursor: pointer;
+    margin-left:10px;
+    color: var(--color-font1);
+}
+.player-timeline-div{
+    display: inline-block;
+    -background-color: green;
+    height: 20px;
+    margin-left:20px;
+}
+.player-time{
+    position:absolute;
+    font-size: 13px;
+    top:10px;
+    color:var(--color-font1);
+}
+/*
+#backward{
+
+}
+#forward{
+
+}
+#play-pause{
+
+}
+*/
+#volume-button{
+
+}
+#volume-button:hover{
+
+}
+#volume-scale{
+
+}
+
+/*  
+Equlizer Style Sheet
+
+
+*/
+.eqBox{
+	visibility: hidden;
+}
+.eqBox .child{
+	height:100px;
+	width:3px;
+	display:inline-block;
+	 background: linear-gradient(to top, black, grey,red);
+	transition: height  0.05s;
+	position:relative;
+}
+.eqBox .child1{
+	height:100px;
+	width:6px;
+	display:inline-block;
+	 background: linear-gradient(to top, red, yellow,red);
+	margin-top:0px;
+	transition: all 0.3s;
+	position:relative;
+	visibility:hidden;
+}
+.equlizer{
+    display: inline-block;
+    position: absolute;
+    right:50px;
+    bottom: 0px;
+}

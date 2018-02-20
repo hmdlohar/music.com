@@ -1,0 +1,127 @@
+<style type="text/css">
+$color1: blue;
+body{
+	background-color: #E0E0E0;
+}
+:root {
+    --color1: #523114;
+    --color2: #fffeff;
+    --color3: #3f3f40;
+    --color4: #fbeeca;
+    --color5: black;
+    --color6: yellow;
+    --color7: yellow;
+    --color8: yellow;
+    --color9: yellow;
+    --color10: yellow;
+}
+.music-player{
+	height:150px;
+	position: fixed;
+	bottom: 0px;
+	background-color: var(--color4);
+	width:100%;
+	text-align: center;
+	font-size: 50px;
+	user-select: none;
+}
+.music-player-controls{
+	position: absolute;
+	bottom: 10px;
+	right:20px;
+}
+.control{
+	border:3px solid var(--color3);
+	cursor: pointer;
+	box-shadow: -3px 3px 5px var(--color5);
+	text-shadow: -1px 2px 8px var(--color6),1px -2px 8px var(--color6);
+}
+.volume-control{
+	display: inline-block;
+	height:70px;
+	width:220px;
+}
+#backward{
+	padding: 5px;
+	padding-right: 10px;
+	color:var(--color2);
+	background-color: var(--color1);
+	border-radius: 30px 5px 5px 30px;
+}
+#forward{
+	padding: 5px;
+	padding-left: 10px;
+	color:var(--color2);
+	margin-right: 20px;
+	background-color: var(--color1);
+	border-radius: 5px 30px 30px 5px;
+}
+#play-pause{
+	height: 80px;
+	width: 80px;
+	line-height: 80px;
+	color:var(--color2);
+	background-color: var(--color1);
+	border-radius: 120px;
+}
+#volume-button{
+	overflow: hidden;
+	width:200px;
+	height: 50px;
+	text-align: left;
+	background-color: var(--color1);
+	color:var(--color2);
+	transition: width 0.5s ease;
+}
+#volume-button:hover{
+	width:200px;
+}
+#volume-scale{
+	background-color: blue;
+	height:20px;
+	width:150px;
+	display: inline;
+}
+</style>
+<link rel="stylesheet" type="text/css" href="font-awesome/css/font-awesome.css">
+<html>
+	<audio src="music2.mp3" id="music1"></audio>
+	
+	<div class="music-player">
+		<div class="music-player-controls">
+			<div class="volume-control">
+				<i class="control fa fa-volume-up" id="volume-button"></i>
+				<div id="volume-scale"></div>
+			</div>
+			<i class="control fa fa-backward" id="backward"></i>
+			<i class="control fa fa-play" id="play-pause"></i>
+			<i class="control fa fa-forward" id="forward"></i>
+		</div>
+	</div>
+</html>
+<script src="jquery/jquery-1.11.3.min.js"></script>
+<script>
+audio=document.querySelector("#music1");
+audio.onplaying=audioOnPlay;
+audio.onpause=audioOnPause
+window.playing=false;
+$("#play-pause").click(function(){
+	$(this).toggleClass("fa-play");
+	$(this).toggleClass("fa-pause");
+	togglePlay();
+});
+function togglePlay(){
+	if(window.playing){
+		audio.pause();
+	}
+	else{
+		audio.play();
+	}
+}
+function audioOnPause(){
+	window.playing=false;
+}
+function audioOnPlay(){
+	window.playing=true;
+}
+</script>

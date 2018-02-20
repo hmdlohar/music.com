@@ -1,0 +1,122 @@
+<html>
+    <head>
+        <title>Music.com</title>
+        <link rel="stylesheet" type="text/css" href="style.css">
+        <link rel="stylesheet" type="text/css" href="font-awesome/css/font-awesome.css">
+    </head>
+    <body>
+        
+        <div class="sidebar" id="sidebar">
+            <ul>
+                <li class="side-bar-item"><i class="fa fa-line-chart"></i><a href="#">Trending</a></li>
+                <li class="side-bar-item"><i class="fa fa-search"></i><a href="#">Discover</a></li>
+                <li class="side-bar-item"><i class="fa fa-list"></i><a href="#">My List</a></li>
+                <li class="side-bar-item"><i class="fa fa-info"></i><a href="#">About</a></li>
+                <li class="side-bar-item"><i class="fa fa-phone"></i><a href="#">Contact Us</a></li>
+            </ul>
+        </div>
+        <div class="header">
+            <div id="menu-icon" class="menu-icon"><i class="fa fa-bars"></i></div>
+            <h1>Music.com</h1>
+            <div class="login-area">
+                <a href="#" class="login-btn">Login</a>
+                <a href="#" class="login-btn">Sign Up</a>
+            </div>
+        </div>
+       
+        <div class="main-area">
+            <div class="container-area">
+                <div class="container-heading">
+
+                </div>
+                <div class="container-inner">
+                    <div class="container-item">
+                        <img src="img/img1.png">
+                        <span class="item-title">Title 1</span>
+                    </div>
+                    <div class="container-item">
+                        <img src="img/img1.png">
+                        <span class="item-title">Title 1</span>
+                    </div>
+                    <div class="container-item">
+                        <img src="img/img1.png">
+                        <span class="item-title">Title 1</span>
+                    </div>
+                    <div class="container-item">
+                        <img src="img/img1.png">
+                        <span class="item-title">Title 1</span>
+                    </div>
+                    <div class="container-item">
+                        <img src="img/img1.png">
+                        <span class="item-title">Title 1</span>
+                    </div>
+                    <div class="container-item">
+                        <img src="img/img1.png">
+                        <span class="item-title">Title 1</span>
+                    </div>
+                    <div class="container-item">
+                        <img src="img/img1.png">
+                        <span class="item-title">Title 1</span>
+                    </div>
+                    <div class="container-item">
+                        <img src="img/img1.png">
+                        <span class="item-title">Title 1</span>
+                    </div>
+                    <div class="container-item">
+                        <img src="img/img1.png">
+                        <span class="item-title">Title 1</span>
+                    </div>
+               </div>
+            </div>
+        </div>
+        <audio src="music2.mp3" id="music1"></audio>
+	
+        <div class="music-player">
+            <div class="music-player-controls">
+                <div class="volume-control">
+                    <i class="control fa fa-volume-up" id="volume-button"></i>
+                    <div id="volume-scale"></div>
+                </div>
+                <i class="control fa fa-backward" id="backward"></i>
+                <i class="control fa fa-play" id="play-pause"></i>
+                <i class="control fa fa-forward" id="forward"></i>
+            </div>
+        </div>
+    </body>
+</html>
+<script src="jquery/jquery-1.11.3.min.js"></script>
+<script>
+sb=document.getElementById("sidebar");
+sb.style.width="90px";
+$("#menu-icon").click(function(){
+    if(sb.style.width == "250px"){
+        sb.style.width="90px";
+    }
+    else{
+        sb.style.width="250px";
+    }
+});
+audio=document.querySelector("#music1");
+audio.onplaying=audioOnPlay;
+audio.onpause=audioOnPause
+window.playing=false;
+$("#play-pause").click(function(){
+    $(this).toggleClass("fa-play");
+    $(this).toggleClass("fa-pause");
+    togglePlay();
+});
+function togglePlay(){
+    if(window.playing){
+        audio.pause();
+    }
+    else{
+        audio.play();
+    }
+}
+function audioOnPause(){
+    window.playing=false;
+}
+function audioOnPlay(){
+    window.playing=true;
+}
+</script>
