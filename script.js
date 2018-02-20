@@ -1,6 +1,4 @@
-sb=document.getElementById("sidebar");
 timelineCircle=document.getElementById("timeline-circle");
-
 timelineCircle.onmousedown=function(){
     document.onmousemove=timelineCircleMove;
 }
@@ -15,18 +13,6 @@ function timelineCircleMove(e){
         audio.currentTime=oldMargin+e.movementX;
     }
 
-}
-
-sb.style.width="0px";
-$("#menu-icon").click(toggleSidebar);
-$(".sidebar ul").hover(toggleSidebar);
-function toggleSidebar(){
-    if(sb.style.width == "250px"){
-        sb.style.width="70px";
-    }
-    else{
-        sb.style.width="250px";
-    }
 }
 audio=document.querySelector("#music1");
 audio.volume=0.2;
