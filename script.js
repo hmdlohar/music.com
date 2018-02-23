@@ -1,25 +1,46 @@
 timelineCircle=document.getElementById("timeline-circle");
+audio=document.querySelector("#music1");
+audio.volume=0.2;
+audio.onplaying=audioOnPlaying;
+audio.onpause=audioOnPause;
+window.playing=false;
 timelineCircle.onmousedown=function(){
-    document.onmousemove=timelineCircleMove;
+    //document.onmousemove=timelineCircleMove;
 }
 document.onmouseup=function(){
     document.onmousemove=null;
 }
+//timelineCircle.parentElement.onclick=timelineClick;
+timelineCircle.parentElement.onmousedown=timelineClick;
 function timelineCircleMove(e){
+    e.stopPropagation();
     window.e=e;
     var oldMargin=parseInt(timelineCircle.style.marginLeft);
     if(oldMargin+e.movementX >=-2 && oldMargin+e.movementX <=400){
-        timelineCircle.style.marginLeft=(oldMargin+e.movementX)+"px";
-        audio.currentTime=oldMargin+e.movementX;
+        var tm=oldMargin+e.movementX;
+        //audio.currentTime=audioCurrentTime(tm);
+        console.log(audioCurrentTime(tm)+"->"+tm);
+        audio.currentTime=audioCurrentTime(tm);
+        timelineCircle.style.marginLeft=(tm)+"px";
     }
 
 }
-audio=document.querySelector("#music1");
-audio.volume=0.2;
-audio.onplaying=audioOnPlaying;
-audio.ontimeupdate=audioOnPlay;
-audio.onpause=audioOnPause;
-window.playing=false;
+function timelineClick(e){
+    console.log(audioCurrentTime(e.offsetX));
+    timelineCircle.style.marginLeft=(e.offsetX-10)+"px";
+    audio.currentTime=audioCurrentTime(e.offsetX);
+    document.onmousemove=timelineCircleMove;
+    
+}
+function audioCurrentTime(px){
+    var tLen=400;
+    return Math.floor(px/tLen * audio.duration);
+}
+function timeToPx(tm){
+    var tLen=400;
+    return Math.floor(tm/ audio.duration * tLen);
+}
+
 
 /* equlizer codes */
 childs=document.querySelectorAll(".eqBox .child");
@@ -27,7 +48,7 @@ eqBox=document.querySelectorAll(".eqBox")[0];
 window.canEqulize=true;
 var isChrome = !!window.chrome && !!window.chrome.webstore;
 try{
-    if(isChrome && !location.protocol=="file:"){
+    if(isChrome && location.protocol=="file:"){
         window.canEqulize=false;
     }
     else{
@@ -70,6 +91,7 @@ function togglePlay(){
 }
 function audioOnPause(){
     window.playing=false;
+    clearInterval(window.timeUpdateInterval);
     if(window.canEqulize){
         eqBox.style.visibility="hidden";
         clearInterval(window.equlizerInterval);
@@ -78,6 +100,7 @@ function audioOnPause(){
 }
 function audioOnPlaying(){
     window.playing=true;
+    window.timeUpdateInterval=setInterval(timeUpdated,1000);
     if(window.canEqulize){
         window.equlizerInterval=setInterval(animate,33);
         setTimeout(function(){
@@ -85,8 +108,8 @@ function audioOnPlaying(){
         },100);
     }
 }
-function audioOnPlay(){
-    timelineCircle.style.marginLeft=Math.floor(audio.currentTime)+"px";
-    
+
+function timeUpdated(){
+    timelineCircle.style.marginLeft=Math.floor(timeToPx(audio.currentTime) -5)+"px";
     //console.log("playing");
 }

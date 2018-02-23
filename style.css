@@ -17,6 +17,9 @@ body{
     margin: 0px;
     max-width:100%;
 }
+a{
+    text-decoration: none;
+}
 body::before{
     content: "";
     background-image: url(img/music-background5.jpg);
@@ -37,6 +40,7 @@ body::before{
     -box-shadow: 0px 1px 10px var(--color-font1-hover);
     text-shadow: 1px 1px 1px var(--color-font1-hover);
     opacity: 1;
+    z-index: 1;
 }
 .header h1{
     color:green;
@@ -105,74 +109,12 @@ body::before{
     background:linear-gradient(to right,var(--color-font1) 1% ,var(--color-font1) 5%,var(--color-background2) 250% );
 }
 
-.sidebar{
-    position: fixed;
-    top:0px;
-    transition: all 0.3s;
-    -border: 1px solid gold;
-    -width:20%;
-    height:100%;
-    float:left;
-    -background-color: var(--color-background2);
-    background-color: rgba(0,0,0,0);
-    -box-shadow: 2px -2px 2px var(--color-font1-hover);
-    text-shadow: 1px 1px 1px var(--color-font1-hover);
-    opacity: 1;
-}
-.sidebar-li-collaps{
-    width:50px;
-}
-.sidebar ul{
-    margin-top:130px;
-    list-style-type: none;
-    display: block;
-    list-style: none;
-    padding-left: 10px;
-}
-.sidebar ul li{
-    background-color: var(--color-background2);
-    opacity: 0.5;
-    height:50px;
-    font-size:40px;
-    -border: 1px solid gold;
-    overflow: hidden;
-    margin-right:10px;
-    margin-bottom:20px;
-    color: var(--color-font1);
-    border-bottom: 1px solid var(--color-background2);
-    box-shadow: 1px 1px 5px var(--color-background-all);
-    border-radius: 10px;
-}
-.sidebar ul li a{
-    text-decoration: none;
-    color:var(--color-color5);
-}
-.sidebar ul li i{
-    width:50px;
-    text-align: center;
-    cursor: pointer;
-}
-.sidebar ul li:hover , .sidebar ul li a:hover  {
-    color:var(--color-font1-hover);
-    text-shadow: 1px 1px 1px var(--color-font2);
-    background-color: var(--color-background3);
-}
-.menu-icon{
-    padding: 20px;
-    font-size: 35px;
-    float:left;
-    margin-top:5px;
-    color: var(--color-font1);
-}
-.menu-icon:hover{
-    color:var(--color-font1-hover);
-    cursor: pointer;
-}
+
 .main-area{
     padding-top:110px;
-    padding-left:100px;
+    padding-left:2%;
     height:100%;
-    filter: alpha(opacity=50);
+    z-index: -2;
 }
 .container-area{
     height:300px;
@@ -201,6 +143,44 @@ body::before{
     width:180px;
     border-radius: 180px;
 }
+.grid-list-container{
+}
+.grid-item{
+    width:160px;
+    background-color:grey;
+    padding:10px;
+    opacity: 0.8;
+    box-shadow: 10px 10px 0px black;
+    display: inline-block;
+    margin:20px;
+    margin-left:3%;
+    transition: background-color 0.5s;
+}
+.grid-item:hover{
+    opacity: 1;
+    background-color: darkgrey;
+}
+.grid-item img{
+    height: 120px;
+    width:120px;
+    margin:auto;
+    display: block;
+    border-radius: 150px;
+    border: 2px solid black;
+}
+.grid-title{
+    margin:auto;
+    text-align: center;
+    margin-top:5px;
+    font-weight: bold;
+    color:white;
+}
+.grid-album{
+    color:black;
+    font-size: 12px;
+}
+
+
 
 .music-player{
 	height:50px;
@@ -311,3 +291,4 @@ Equlizer Style Sheet
     right:50px;
     bottom: 0px;
 }
+
