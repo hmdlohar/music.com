@@ -13,12 +13,17 @@
     --color9: yellow;
     --color10: yellow;
 }
+@font-face {
+    font-family: Musical;
+    src: url(fonts/musical3.ttf);
+}
 body{
     margin: 0px;
     max-width:100%;
 }
 a{
     text-decoration: none;
+    color:white;
 }
 body::before{
     content: "";
@@ -43,11 +48,13 @@ body::before{
     z-index: 1;
 }
 .header h1{
-    color:green;
+    color:white;
     font-size: 40px;
     margin: 10px;
     float: left;
     margin-left:20px;
+    font-family: Musical;
+    letter-spacing: 5px;
 }
 .main-titled::before{
     content: "";
@@ -113,7 +120,7 @@ body::before{
 .main-area{
     padding-top:110px;
     padding-left:2%;
-    height:100%;
+    margin-bottom: 100px;
     z-index: -2;
 }
 .container-area{
@@ -143,22 +150,52 @@ body::before{
     width:180px;
     border-radius: 180px;
 }
-.grid-list-container{
+.album-item-switch{
+    width:fit-content;
+    padding:5px;
 }
+.cat-active{
+    background-color: white !important;
+    color:rgba(50,50,50,0.9) !important;
+}
+.album-item-switch span{
+    background-color: rgba(50,50,50,0.9);
+    border-left: 1px solid white;
+    padding:5px;
+    color:white;
+    font-size:25px;
+    margin-left:20px;
+    cursor: pointer;
+}
+
 .grid-item{
     width:160px;
     background-color:grey;
     padding:10px;
-    opacity: 0.8;
+    opacity: 0.9;
     box-shadow: 10px 10px 0px black;
     display: inline-block;
     margin:20px;
     margin-left:3%;
     transition: background-color 0.5s;
+    cursor: pointer;
 }
 .grid-item:hover{
     opacity: 1;
     background-color: darkgrey;
+}
+.grid-item:hover .grid-play-btn{
+    display: block;
+}
+.grid-play-btn{
+    position:absolute;
+    font-size:80px;
+    height:inherit;
+    width:inherit;
+    text-align:center;
+    padding:20px;
+    color:white;
+    display:none;
 }
 .grid-item img{
     height: 120px;
@@ -228,7 +265,6 @@ body::before{
 }
 .player-timeline-div{
     display: inline-block;
-    -background-color: green;
     height: 20px;
     margin-left:20px;
 }
@@ -238,6 +274,34 @@ body::before{
     top:10px;
     color:var(--color-font1);
 }
+
+/* form elements
+*/
+input[type=text] ,textarea{
+    width:90%;
+    margin:auto;
+    display: block;
+    border-radius: 10px 5px 10px 5px;
+    font-size: 18px;
+    padding: 5px;
+    padding-bottom: 0px;
+    color:#445511;
+    outline: none;
+    box-shadow: 0px 0px 4px green;
+    background:#f1f1f1;
+    resize:vertical;
+}
+input[type=submit]{
+    background-color: 263524;
+    color: white;
+    border: 2px solid #e7e7e7;
+    font-size: 22px;
+    margin-left:30px;
+    border-radius: 7px;
+    margin-top:5px;
+    cursor: pointer;
+}
+
 /*
 #backward{
 
@@ -265,11 +329,12 @@ Equlizer Style Sheet
 
 */
 .eqBox{
-	visibility: hidden;
+	display: none;
 }
 .eqBox .child{
-	height:100px;
-	width:3px;
+	height:400px;
+    width:20px;
+    margin-left:10px;
 	display:inline-block;
 	 background: linear-gradient(to top, black, grey,red);
 	transition: height  0.05s;
@@ -279,7 +344,7 @@ Equlizer Style Sheet
 	height:100px;
 	width:6px;
 	display:inline-block;
-	 background: linear-gradient(to top, red, yellow,red);
+	background: linear-gradient(to top, red, yellow,red);
 	margin-top:0px;
 	transition: all 0.3s;
 	position:relative;
@@ -287,8 +352,59 @@ Equlizer Style Sheet
 }
 .equlizer{
     display: inline-block;
-    position: absolute;
-    right:50px;
-    bottom: 0px;
+    position: fixed;
+    left:50px;
+    bottom: 100px;
+    z-index: -1;
 }
 
+/*
+mylist css
+*/
+.my-list-container{
+    -background: #F9F9F9;
+    border-left: 5px solid white;
+    border-right: 5px solid white;
+    width:95%;
+    padding:5px;
+}
+.my-list-item{
+    background-color: #909090;
+    margin:5px;
+    padding: 5px;
+    display: flex;
+    cursor: pointer;
+    transition: background-color 0.5s;
+    opacity: 0.9;
+}
+.my-list-item:hover{
+    background-color: #C0C0C0;
+    opacity: 1;
+}
+.list-item-img{
+    width:100px;
+}
+.my-list-item img{
+    height:100px;
+    width:100px;
+    border-radius: 100px;
+    
+}
+.list-item-details{
+   padding: 10px;
+}
+.my-list-title{
+    font-size: 35px;
+}
+.my-list-album{
+    font-size: 18px;
+    text-decoration: underline;
+    margin-top:20px;
+}
+.play-btn-div{
+    margin:30px;
+    font-size: 50px;
+    margin-top:auto;
+    margin-bottom: auto;
+    color:#202020;
+}

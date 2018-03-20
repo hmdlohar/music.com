@@ -1,90 +1,97 @@
 <html>
     <head>
-        <title>Music.com</title>
+        <title>Trending - Music.com</title>
         <link rel="stylesheet" type="text/css" href="font-awesome/css/font-awesome.css">
         <link rel="stylesheet" type="text/css" href="style.css">
-       
+       <style>
+           .slider-area{
+               
+               width:95%;
+               height:400px;
+               overflow:hidden;
+               padding:20px;
+           }
+           .slider-container{
+                width:5800px;
+                margin-top:auto;
+                margin-bottom:auto;
+           }
+           .slider-item{
+               display: inline;
+           }
+       </style>
     </head>
     <body>
+<script src="header.html"></script>
+<script src="data.js"></script>
+<script src="jquery/jquery-1.11.3.min.js"></script>
 
-        <div class="header">
-            <div id="menu-icon" class="menu-icon" style="display:none"><i class="fa fa-bars"></i></div>
-            <h1 class="main-title">Music.com</h1>
-            <div class="header-menu">
-                <ul>
-                    <a href="#"><li class="header-menu-item">Trending</li></a>
-                    <a href="#"><li class="header-menu-item">Music Library</li></a>
-                    <a href="#"><li class="header-menu-item">Discover</li></a>
-                    <a href="#"><li class="header-menu-item">My List</li></a>
-                    <a href="#"><li class="header-menu-item">About</li></a>
-                </ul>
-            </div>
-            <div class="login-area">
-                <a href="#" class="login-btn">Login</a>
-                <a href="#" class="login-btn">Sign Up</a>
+    <div class="main-area">
+        <script src="equlizer.html"></script>
+        <div class="slider-area" id="sliderArea">
+                <div class="slider-container" id="sliderContainer">
+            <script>
+                for(i=2;i<10;i++){
+                    document.write(`
+                    
+                        <div class="slider-item">
+                            <a href="#"><img src="img/poster/poster_`+i+`.jpg" alt=""></a>
+                        </div>
+                    
+                    `);
+                }
+            </script>
             </div>
         </div>
-
-        <div class="main-area">
-
-        </div>
-        <audio src="music1.mp3" id="music1" controls></audio>
-	
-        <div class="music-player">
-            <div class="music-player-controls">
-                <i class="fa fa-backward control" id="backward"></i>
-                <i class="fa fa-play control" id="play-pause"></i>
-                <i class="fa fa-forward control" id="forward"></i>
-                <div class="player-timeline-div">
-                    <div class="player-time">0.30/2.50</div>
-                    <div class="player-timeline">
-                        <i class="fa fa-circle" id="timeline-circle" style="margin-left:-2px;"></i>
-                    </div>
-                </div>
-                <div class="volume-control">
-                    <i class="control fa fa-volume-up" id="volume-button"></i>
-                    <div id="volume-scale"></div>
-                </div>
-            </div>
-            <div class="equlizer">
-                <div class="eqBox">
-                    <div class="child1"></div>
-                    <div class="child"></div>
-                    <div class="child"></div>
-                    <div class="child"></div>
-                    <div class="child"></div>
-                    <div class="child"></div>
-                    <div class="child"></div>
-                    <div class="child"></div>
-                    <div class="child"></div>
-                    <div class="child"></div>
-                    <div class="child"></div>
-                    <div class="child"></div>
-                    <div class="child"></div>
-                    <div class="child"></div>
-                    <div class="child"></div>
-                    <div class="child"></div>
-                    <div class="child"></div>
-                    <div class="child"></div>
-                    <div class="child"></div>
-                    <div class="child"></div>
-                    <div class="child"></div>
-                    <div class="child"></div>
-                    <div class="child"></div>
-                    <div class="child"></div>
-                    <div class="child"></div>
-                    <div class="child"></div>
-                    <div class="child"></div>
-                    <div class="child"></div>
-                    <div class="child"></div>
-                    <div class="child"></div>
-                    <div class="child"></div>
-                    <div class="child"></div>
-                    <div class="child"></div>
-                </div>
-            </div>
-        </div>
+        
+    </div>
+    <script src="music-player.html"></script>
     </body>
 </html>
-<script src="jquery/jquery-1.11.3.min.js"></script>
 <script src="script.js"></script>
+<script>
+
+gridListContainer=document.getElementById("gridListContainer");
+sliderArea=document.getElementById("sliderArea");
+
+window.onload=function(){
+    //loadList(gridListContainer);
+    sliderArea.onmousemove=sliderMouseMove;
+}
+function sliderMouseMove(e){
+    sliderArea.scrollLeft=(e.x - 50) * 4
+}
+function loadTrendingTracks(){
+    gridListContainer.innerHTML="";
+    for(i=0;i<=39;i++){
+        var t=trendingSongs[i];
+        var imgPath="img/songs/track_"+t.id;
+        gridListContainer.innerHTML+=`
+                    <div class="grid-item" data-id="`+t.id+`">
+                        <div class="grid-play-btn" style=""><i class="fa fa-play" style="display:block;margin-top:auto;margin-bottom:auto;"></i></div>
+                        <img src="`+imgPath+`" alt="">
+                        <div class="grid-title">`+t.title+`</div>
+                        <div class="grid-album">`+t.artist+`</div>
+                    </div> 
+        `;
+    } 
+        
+    
+}
+function loadTrendingAlbums(){
+    gridListContainer.innerHTML="";
+    for(i=0;i<=39;i++){
+        var t=trendingAlbums[i];
+        var imgPath="img/album/album_"+t.id;
+        gridListContainer.innerHTML+=`
+                    <div class="grid-item" data-id="`+t.id+`">
+                            <div class="grid-play-btn" style=""><i class="fa fa-play" style="display:block;margin-top:auto;margin-bottom:auto;"></i></div>
+                        <img src="`+imgPath+`" alt="">
+                        <div class="grid-title">`+t.name+`</div>
+                        <div class="grid-album"></div>
+                    </div> 
+        `;
+    }    
+}
+
+</script>

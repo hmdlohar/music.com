@@ -1,0 +1,70 @@
+<html>
+    <head>
+        <title>Music.com</title>
+        <link rel="stylesheet" type="text/css" href="font-awesome/css/font-awesome.css">
+        <link rel="stylesheet" type="text/css" href="style.css">
+        <style type="text/css">
+            
+        </style>
+    </head>
+    <body>
+
+            <script src="header.html"></script>
+            <script src="data.js"></script>
+
+        <div class="main-area">
+                <script src="equlizer.html"></script>
+            <div class="my-list-container" onload="loadList(this)" id="myListContainer">
+                
+                <!-- <div class="my-list-item">
+                    <div class="list-item-img">
+                        <img src="img/img1.png" alt="">
+                    </div>
+                    <div class="list-item-details">
+                        <div class="my-list-title">SomeTitle is here</div>
+                        <div class="my-list-album">Album name</div>
+                    </div>
+                    <div class="play-btn-div">
+                        <i class="fa fa-play"></i>
+                    </div>
+                </div> -->
+            </div>
+        </div>
+        <script src="music-player.html"></script>
+    </body>
+</html>
+<script src="jquery/jquery-1.11.3.min.js"></script>
+<script src="script.js"></script>
+<script>
+myListContainer=document.getElementById("myListContainer");
+window.onload=function(){
+    
+    loadMyList();
+}
+
+
+function loadMyList(){
+    myListContainer.innerHTML="";
+    for(i=2;i<=99;i+=4){
+        var t=trendingSongs[i];
+        var imgPath="img/songs/track_"+t.id;
+        myListContainer.innerHTML+=`
+            <div class="my-list-item"  onclick="changeSong(`+(t.id%10)+`,this);">
+                <div class="play-btn-div">
+                    <i class="fa fa-play"></i>
+                </div>
+                <div class="list-item-img">
+                    <img src="`+imgPath+`" alt="">
+                </div>
+                <div class="list-item-details">
+                    <div class="my-list-title">`+t.title+`</div>
+                    <div class="my-list-album">`+t.artist+`</div>
+                </div>
+                
+            </div>
+        `;
+    }   
+        
+    
+}
+</script>

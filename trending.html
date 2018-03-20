@@ -1,0 +1,83 @@
+<html>
+    <head>
+        <title>Trending - Music.com</title>
+        <link rel="stylesheet" type="text/css" href="font-awesome/css/font-awesome.css">
+        <link rel="stylesheet" type="text/css" href="style.css">
+       
+    </head>
+    <body>
+<script src="header.html"></script>
+<script src="data.js"></script>
+<script src="jquery/jquery-1.11.3.min.js"></script>
+
+    <div class="main-area">
+        <script src="equlizer.html"></script>
+
+        <div class="album-item-switch">
+            <span class="cat-active" id="loadAlbums" onclick="loadAlbums()">Album</span>
+            <span id="loadTracks" onclick="loadTracks()">Tracks</span>
+        </div>
+        <div class="grid-list-container" onload="loadList(this)" id="gridListContainer">
+            <!-- <a href="">
+                <div class="grid-item">
+                    <img src="img/img1.png" alt="">
+                    <div class="grid-title">SomeTitle is here</div>
+                    <div class="grid-album">Album name</div>
+                </div>
+            </a> -->
+        </div>
+    </div>
+    <script src="music-player.html"></script>
+    </body>
+</html>
+<script src="script.js"></script>
+<script>
+function loadTracks(){
+    $("#loadTracks").addClass("cat-active");
+    $("#loadAlbums").removeClass("cat-active");
+    loadTrendingTracks();
+}
+function loadAlbums(){
+    $("#loadTracks").removeClass("cat-active");
+    $("#loadAlbums").addClass("cat-active");
+    loadTrendingAlbums();
+}
+gridListContainer=document.getElementById("gridListContainer");
+window.onload=function(){
+    //loadList(gridListContainer);
+    loadTrendingAlbums();
+}
+function loadTrendingTracks(){
+    gridListContainer.innerHTML="";
+    for(i=0;i<=39;i++){
+        var t=trendingSongs[i];
+        var imgPath="img/songs/track_"+t.id;
+        gridListContainer.innerHTML+=`
+                    <div class="grid-item" data-id="`+t.id+`"  onclick="changeSong(`+(t.id%10)+`,this);">
+                        <div class="grid-play-btn" style=""><i class="fa fa-play" style="display:block;margin-top:auto;margin-bottom:auto;"></i></div>
+                        <img src="`+imgPath+`" alt="">
+                        <div class="grid-title">`+t.title+`</div>
+                        <div class="grid-album">`+t.artist+`</div>
+                    </div> 
+        `;
+    } 
+        
+    
+}
+function loadTrendingAlbums(){
+    gridListContainer.innerHTML="";
+    for(i=0;i<=39;i++){
+        var t=trendingAlbums[i];
+        var imgPath="img/album/album_"+t.id;
+        gridListContainer.innerHTML+=`
+                    <div class="grid-item" data-id="`+t.id+`" >
+                            <div class="grid-play-btn" style=""><i class="fa fa-play" style="display:block;margin-top:auto;margin-bottom:auto;"></i></div>
+                        <img src="`+imgPath+`" alt="">
+                        <div class="grid-title">`+t.name+`</div>
+                        <div class="grid-album"></div>
+                    </div> 
+        `;
+    }    
+}
+
+</script>

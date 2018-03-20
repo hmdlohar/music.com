@@ -1,0 +1,94 @@
+<html>
+    <head>
+        <title>Music.com</title>
+        <link rel="stylesheet" type="text/css" href="font-awesome/css/font-awesome.css">
+        <link rel="stylesheet" type="text/css" href="style.css">
+        <style type="text/css">
+            .atoz-list{
+                margin-top:20px;
+                text-align: center;
+            }
+            .atoz-item{
+                width:18px;
+                margin-left:5px;
+                background:black;
+                border:1px solid white;
+                color:white;
+                border-radius: 3px;
+                font-size: 27px;
+                padding: 5px;
+                padding-left:10px;
+                padding-right:10px;
+                cursor:pointer;
+                float: left;
+                font-weight: bold;
+            }
+        </style>
+    </head>
+    <body>
+
+        <script src="header.html"></script>
+        <script src="data.js"></script>
+
+        <div class="main-area">
+            <script src="equlizer.html"></script>
+            <div class="search-area" style="text-align:center;">
+                <input type="text" placeholder="Your Search Query" style="width:70%;display:inline;font-size:25px;padding:5px;">
+                <input type="submit" value="Search" style="display:inline;font-size:25px;padding:5px;">
+            </div>
+            <div class="atoz-list"></div>
+            <script>
+                var ta=65;
+                for(ta=65;ta<91;ta++){
+                    var char=String.fromCharCode(ta);
+                    document.write(`
+                        <div class="atoz-item" onclick="loadCharList('`+char+`')"> `+char+`</div>
+                    `);
+                }
+            </script>
+            <div class="my-list-container"  id="myListContainer" style="margin-top:100px;">
+                
+            </div>
+        </div>
+        <script src="music-player.html"></script>
+    </body>
+</html>
+<script src="jquery/jquery-1.11.3.min.js"></script>
+<script src="script.js"></script>
+<script>
+myListContainer=document.getElementById("myListContainer");
+window.onload=function(){
+    loadCharList();
+}
+
+
+function loadCharList(c){
+    myListContainer.innerHTML="";
+    for(i=2;i<=99;i+=4){
+        var t=trendingSongs[i];
+        if(!(t.title.charAt(0)==c) && c ){
+            //console.log(t.title.charAt(0)==c);
+            continue;
+        }
+        var imgPath="img/songs/track_"+t.id;
+        myListContainer.innerHTML+=`
+            <div class="my-list-item" onclick="changeSong(`+(t.id%10)+`,this);">
+                <div class="play-btn-div">
+                    <i class="fa fa-play"></i>
+                </div>
+                <div class="list-item-img">
+                    <img src="`+imgPath+`" alt="">
+                </div>
+                <div class="list-item-details">
+                    <div class="my-list-title">`+t.title+`</div>
+                    <div class="my-list-album">`+t.artist+`</div>
+                </div>
+                
+            </div>
+        `;
+    } 
+}
+
+
+
+</script>
