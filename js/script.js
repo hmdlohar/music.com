@@ -1,8 +1,9 @@
 timelineCircle=document.getElementById("timeline-circle");
+volumeCircle=document.getElementById("volume-circle");
 audio=document.querySelector("#mp3Now");
 songPlayed=document.querySelector("#songPlayed");
 songLength=document.querySelector("#songLength");
-audio.volume=0.2;
+audio.volume=0.4;
 audio.onplaying=audioOnPlaying;
 audio.onpause=audioOnPause;
 audio.onloadedmetadata=function(){
@@ -20,7 +21,20 @@ document.onmouseup=function(){
 
 //timelineCircle.parentElement.onclick=timelineClick;
 timelineCircle.parentElement.onmousedown=timelineClick;
+volumeCircle.parentElement.onmousedown=volumeClick;
 
+function volumeCircleMove(e){
+    e.stopPropagation();
+    window.e=e;
+    var oldMargin=parseInt(volumeCircle.style.marginLeft);
+    if(oldMargin+e.movementX >=0 && oldMargin+e.movementX <=75){
+        var tm=oldMargin+e.movementX;
+        //audio.currentTime=audioCurrentTime(tm);
+        audio.volume=Math.abs((tm / 80))
+        volumeCircle.style.marginLeft=(tm)+"px";
+    }
+
+}
 function timelineCircleMove(e){
     e.stopPropagation();
     window.e=e;
@@ -39,6 +53,13 @@ function timelineClick(e){
     timelineCircle.style.marginLeft=(e.offsetX-10)+"px";
     audio.currentTime=audioCurrentTime(e.offsetX);
     document.onmousemove=timelineCircleMove;
+    
+}
+function volumeClick(e){
+    console.log(audioCurrentTime(e.offsetX));
+    volumeCircle.style.marginLeft=(e.offsetX-10)+"px";
+    audio.volume=Math.abs((e.offsetX / 80))
+    document.onmousemove=volumeCircleMove;
     
 }
 function audioCurrentTime(px){
@@ -101,6 +122,10 @@ function togglePlay(){
 
 function changeSong(num,e){
     audio.src="mp3/music"+num+".mp3";
+    var imgPath="img/songs/track_"+num;
+    var t=trendingSongs[num];
+    $("#currentSong").find("img").attr("src",imgPath);
+    $("#currentSong").find(".cpi-title").text(t.title);
     audio.play();
     if($(".main-area .fa-pause").hasClass("fa-pause")){
         $(".main-area .fa-pause").addClass("fa-play")
@@ -142,4 +167,71 @@ function timeUpdated(){
     timelineCircle.style.marginLeft=Math.floor(timeToPx(audio.currentTime) -5)+"px";
     songPlayed.innerHTML=secondToMin(audio.currentTime);
     //console.log("playing");
+}
+
+function showPopup(id,per=30){
+    $("#"+id).animate({top:per+"%"})
+}
+function hidePopup(id){
+    $("#"+id).animate({top:"-200%"})
+}
+
+function validateSignup(frm){
+    console.log("jhi");
+    window.frm=frm;
+    if(frm.name.value == ""){
+        notie.error("Please Enter Full Name");
+        return false;
+    }
+    else if(frm.username.value == ""){
+        notie.error("Please Enter username");
+        return false;
+    }
+    else if(frm.username.value.length < 8){
+        notie.error("Username should not be less then 8 characters");
+        return false;
+    }
+    else if(frm.email.value.indexOf("@")== -1 || frm.email.value.indexOf(".",frm.email.value.indexOf("@"))==-1||frm.email.value.indexOf("@") > frm.email.value.indexOf(".",frm.email.value.indexOf("@"))){
+      notie.error("Enter valid email");
+        return false;  
+    }
+    else if(frm.password.value == "" || frm.password.value.length < 8){
+        notie.error("Password Must be atleast 8 characters long");
+        return false;
+    }
+    else if(frm.password.value != frm.repassword.value){
+        notie.error("Retype Password Do not match");
+        return false;
+    }
+    else if(frm.dob.value == ""){
+        notie.error("Enter Date of Birth");
+        return false;
+    }
+    notie.success("Registeration Successful");
+    hidePopup("signupPopup");
+    $("#loginArea").hide();
+    return false;
+}
+function validateLogin(frm){
+    if(frm.username.value == ""){
+        notie.error("Please Enter username");
+        return false;
+    }
+    else if(frm.password.value == ""){
+        notie.error("Please Enter password");
+        return false;
+    }
+    notie.success("Login Successful");
+    hidePopup("loginPopup");
+    $("#loginArea").hide();
+    return false;
+}
+
+function toggleCurrentPlaylist(){
+    if($("#cpiContainer").height() <=10){
+       $("#cpiContainer").animate({height:"500px"}); 
+    }
+    else{
+        $("#cpiContainer").animate({height:"0px"}); 
+    }
 }

@@ -1,0 +1,74 @@
+<html>
+    <head>
+        <title>Discover Your Music - Music.com</title>
+        <link rel="stylesheet" type="text/css" href="font-awesome/css/font-awesome.css">
+        <link rel="stylesheet" type="text/css" href="style.css">
+        <link rel="icon" href="img/icon.png" type="image/png" sizes="16x16">
+       <style>
+           .discover-list{
+                align-content:center;
+                text-align: center;
+           }
+           .discover-item{
+                display: inline-block;
+                margin:10px;
+                padding: 10px;
+                border: 3px solid white;
+                background: black;
+           }
+           .discover-item img{
+                width:300px;
+                transition: transform 0.2s;
+                cursor: pointer;
+           }
+           .discover-item img:hover{
+                transform: scale(1.1, 1.1);
+
+           }
+
+       </style>
+    </head>
+    <body>
+<script src="header.html"></script>
+<script src="js/data.js"></script>
+<script src="jquery/jquery-1.11.3.min.js"></script>
+
+    <div class="main-area">
+        <script src="equlizer.html"></script>
+        <div class="discover-list" id="discoverList">
+            <div class="discover-item">
+                <img src="img/genre/genre_2">
+            </div>
+        </div>
+        
+    </div>
+    <script src="music-player.html"></script>
+    </body>
+</html>
+<script src="js/script.js"></script>
+<script>
+
+gridListContainer=document.getElementById("gridListContainer");
+discoverList=document.getElementById("discoverList");
+
+window.onload=function(){
+  loadDiscoverList();
+}
+
+function loadDiscoverList(){
+    discoverList.innerHTML="";
+    for(i=2;i<=25;i++){
+        var imgPath="img/genre/genre_"+i;
+        discoverList.innerHTML+=`
+                   <a href="discover-catagory-page.html">
+                     <div class="discover-item">
+                         <img src="img/genre/genre_`+i+`">
+                    </div>
+                   </a>
+        `;
+    } 
+        
+    
+}
+
+</script>

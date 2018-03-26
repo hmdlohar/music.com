@@ -1,0 +1,120 @@
+<html>
+    <head>
+        <title>Welcome To Music.com</title>
+        <link rel="stylesheet" type="text/css" href="font-awesome/css/font-awesome.css">
+        <link rel="stylesheet" type="text/css" href="style.css">
+        <link rel="icon" href="img/icon.png" type="image/png" sizes="16x16">
+       <style>
+           .slider-area{
+               
+               width:95%;
+               height:400px;
+               overflow:hidden;
+               padding:20px;
+           }
+           .slider-container{
+                width:5800px;
+                margin-top:auto;
+                margin-bottom:auto;
+           }
+           .slider-item{
+               display: inline;
+           }
+       </style>
+    </head>
+    <body>
+<script src="header.html"></script>
+<script src="js/data.js"></script>
+<script src="jquery/jquery-1.11.3.min.js"></script>
+
+    <div class="main-area">
+        <script src="equlizer.html"></script>
+        <div class="slider-area" id="sliderArea">
+                <div class="slider-container" id="sliderContainer">
+            <script>
+                for(i=2;i<10;i++){
+                    document.write(`
+                    
+                        <div class="slider-item">
+                            <a href="album-list-page.html"><img src="img/poster/poster_`+i+`.jpg" alt=""></a>
+                        </div>
+                    
+                    `);
+                }
+            </script>
+            </div>
+        </div>
+        <div class="trending-album-area">
+            <div class="home-trending-title">
+                Trending Albums
+                <a href="trending.html" class="sp-link">View All</a>
+            </div>
+            <div class="trending-album-list" id="trendingAlbumsContainer">
+                
+            </div>
+        </div>
+        <div class="trending-album-area">
+            <div class="home-trending-title">
+            Trending Albums
+            <a href="trending.html" class="sp-link">View All</a>
+        </div>
+            <div class="trending-album-list" id="trendingSongsContainer">
+                
+            </div>
+        </div>
+    </div>
+    <script src="music-player.html"></script>
+    </body>
+</html>
+
+<script src="js/script.js"></script>
+<script>
+
+trendingAlbumsContainer=document.getElementById("trendingAlbumsContainer");
+trendingSongsContainer=document.getElementById("trendingSongsContainer");
+
+window.onload=function(){
+    loadTrendingAlbums();
+    loadTrendingTracks();
+    //loadList(gridListContainer);
+    sliderArea.onmousemove=sliderMouseMove;
+}
+function sliderMouseMove(e){
+    sliderArea.scrollLeft=(e.x - 50) * 4
+}
+function loadTrendingTracks(){
+    trendingSongsContainer.innerHTML="";
+    for(i=0;i<=39;i+=4){
+        var t=trendingSongs[i];
+        var imgPath="img/songs/track_"+t.id;
+        trendingSongsContainer.innerHTML+=`
+                    <div class="grid-item" data-id="`+t.id+`"  onclick="changeSong(`+(t.id%10)+`,this);">
+                        <div class="grid-play-btn" style=""><i class="fa fa-play" style="display:block;margin-top:auto;margin-bottom:auto;"></i></div>
+                        <img src="`+imgPath+`" alt="">
+                        <div class="grid-title">`+t.title+`</div>
+                        <div class="grid-album">`+t.artist+`</div>
+                    </div> 
+        `;
+    } 
+        
+    
+}
+function loadTrendingAlbums(){
+    trendingAlbumsContainer.innerHTML="";
+    for(i=0;i<=39;i+=4){
+        var t=trendingAlbums[i];
+        var imgPath="img/album/album_"+t.id;
+        trendingAlbumsContainer.innerHTML+=`
+                <a href="album-list-page.html">
+                    <div class="grid-item" data-id="`+t.id+`" >
+                            <div class="grid-play-btn" style=""><i class="fa fa-play" style="display:block;margin-top:auto;margin-bottom:auto;"></i></div>
+                        <img src="`+imgPath+`" alt="">
+                        <div class="grid-title">`+t.name+`</div>
+                        <div class="grid-album"></div>
+                    </div> 
+                </a>
+        `;
+    }    
+}
+
+</script>

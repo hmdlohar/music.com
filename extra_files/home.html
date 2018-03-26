@@ -1,8 +1,9 @@
 <html>
     <head>
-        <title>Trending - Music.com</title>
+        <title>Welcome To Music.com</title>
         <link rel="stylesheet" type="text/css" href="font-awesome/css/font-awesome.css">
         <link rel="stylesheet" type="text/css" href="style.css">
+        <link rel="icon" href="img/icon.png" type="image/png" sizes="16x16">
        <style>
            .slider-area{
                
@@ -35,7 +36,7 @@
                     document.write(`
                     
                         <div class="slider-item">
-                            <a href="#"><img src="img/poster/poster_`+i+`.jpg" alt=""></a>
+                            <a href="album-list-page.html"><img src="img/poster/poster_`+i+`.jpg" alt=""></a>
                         </div>
                     
                     `);
@@ -43,18 +44,38 @@
             </script>
             </div>
         </div>
-        
+        <div class="trending-album-area">
+            <div class="home-trending-title">
+                Trending Albums
+                <a href="trending.html" class="sp-link">View All</a>
+            </div>
+            <div class="trending-album-list" id="trendingAlbumsContainer">
+                
+            </div>
+        </div>
+        <div class="trending-album-area">
+            <div class="home-trending-title">
+            Trending Albums
+            <a href="trending.html" class="sp-link">View All</a>
+        </div>
+            <div class="trending-album-list" id="trendingSongsContainer">
+                
+            </div>
+        </div>
     </div>
     <script src="music-player.html"></script>
     </body>
 </html>
+
 <script src="script.js"></script>
 <script>
 
-gridListContainer=document.getElementById("gridListContainer");
-sliderArea=document.getElementById("sliderArea");
+trendingAlbumsContainer=document.getElementById("trendingAlbumsContainer");
+trendingSongsContainer=document.getElementById("trendingSongsContainer");
 
 window.onload=function(){
+    loadTrendingAlbums();
+    loadTrendingTracks();
     //loadList(gridListContainer);
     sliderArea.onmousemove=sliderMouseMove;
 }
@@ -62,12 +83,12 @@ function sliderMouseMove(e){
     sliderArea.scrollLeft=(e.x - 50) * 4
 }
 function loadTrendingTracks(){
-    gridListContainer.innerHTML="";
-    for(i=0;i<=39;i++){
+    trendingSongsContainer.innerHTML="";
+    for(i=0;i<=39;i+=4){
         var t=trendingSongs[i];
         var imgPath="img/songs/track_"+t.id;
-        gridListContainer.innerHTML+=`
-                    <div class="grid-item" data-id="`+t.id+`">
+        trendingSongsContainer.innerHTML+=`
+                    <div class="grid-item" data-id="`+t.id+`"  onclick="changeSong(`+(t.id%10)+`,this);">
                         <div class="grid-play-btn" style=""><i class="fa fa-play" style="display:block;margin-top:auto;margin-bottom:auto;"></i></div>
                         <img src="`+imgPath+`" alt="">
                         <div class="grid-title">`+t.title+`</div>
@@ -79,17 +100,19 @@ function loadTrendingTracks(){
     
 }
 function loadTrendingAlbums(){
-    gridListContainer.innerHTML="";
-    for(i=0;i<=39;i++){
+    trendingAlbumsContainer.innerHTML="";
+    for(i=0;i<=39;i+=4){
         var t=trendingAlbums[i];
         var imgPath="img/album/album_"+t.id;
-        gridListContainer.innerHTML+=`
-                    <div class="grid-item" data-id="`+t.id+`">
+        trendingAlbumsContainer.innerHTML+=`
+                <a href="album-list-page.html">
+                    <div class="grid-item" data-id="`+t.id+`" >
                             <div class="grid-play-btn" style=""><i class="fa fa-play" style="display:block;margin-top:auto;margin-bottom:auto;"></i></div>
                         <img src="`+imgPath+`" alt="">
                         <div class="grid-title">`+t.name+`</div>
                         <div class="grid-album"></div>
                     </div> 
+                </a>
         `;
     }    
 }

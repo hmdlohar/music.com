@@ -1,3 +1,4 @@
+firstTrack=trendingSongs[0];
 document.write(`
 <audio src="mp3/music0.mp3" id="mp3Now"></audio>
 	
@@ -14,9 +15,58 @@ document.write(`
                 </div>
                 <div class="volume-control">
                     <i class="control fa fa-volume-up" id="volume-button"></i>
-                    <div id="volume-scale"></div>
+                    <div id="volume-scale">
+                        <i class="fa fa-circle" id="volume-circle" style="margin-left:30px;"></i>
+                    </div>
                 </div>
             </div>
-            
+            <div class="current-playlist">
+                <div class="current-song" id="currentSong" onclick="toggleCurrentPlaylist()">
+                    <div class="current-playlist-item">
+                        <div class="cpi-image">
+                            <img src="img/songs/track_`+firstTrack.id+`" alt="">
+                        </div>
+                        <div class="cpi-details">
+                            <div class="cpi-title">`+firstTrack.title+`</div>
+                            
+                        </div>
+                    </div>
+                </div>
+                <div class="playlist-container" style="height:0px;" id="cpiContainer">
+                    <div class="current-playlist-item">
+                        <div class="cpi-image">
+                            <img src="img/album/album_1" alt="">
+                        </div>
+                        <div class="cpi-details">
+                            <div class="cpi-title">This my title</div>
+                            
+                        </div>
+                    </div>
+                    
+                </div>
+            </div>
         </div>
 `);
+cpiContainer=document.getElementById("cpiContainer");
+loadcpiContainer();
+function loadcpiContainer(){
+    cpiContainer.innerHTML="";
+    for(i=2;i<=99;i+=4){
+        var t=trendingSongs[i];
+        var imgPath="img/songs/track_"+t.id;
+        cpiContainer.innerHTML+=`
+                    
+                    <div class="current-playlist-item" data-id="`+t.id+`" onclick="changeSong(`+(t.id%10)+`,this);">
+                        <div class="cpi-image">
+                            <img src="`+imgPath+`" alt="">
+                        </div>
+                        <div class="cpi-details">
+                            <div class="cpi-title">`+t.title+`</div>
+                            
+                        </div>
+                    </div>
+        `;
+    } 
+        
+    
+}

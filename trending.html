@@ -3,11 +3,12 @@
         <title>Trending - Music.com</title>
         <link rel="stylesheet" type="text/css" href="font-awesome/css/font-awesome.css">
         <link rel="stylesheet" type="text/css" href="style.css">
+        <link rel="icon" href="img/icon.png" type="image/png" sizes="16x16">
        
     </head>
     <body>
 <script src="header.html"></script>
-<script src="data.js"></script>
+<script src="js/data.js"></script>
 <script src="jquery/jquery-1.11.3.min.js"></script>
 
     <div class="main-area">
@@ -30,7 +31,7 @@
     <script src="music-player.html"></script>
     </body>
 </html>
-<script src="script.js"></script>
+<script src="js/script.js"></script>
 <script>
 function loadTracks(){
     $("#loadTracks").addClass("cat-active");
@@ -70,12 +71,14 @@ function loadTrendingAlbums(){
         var t=trendingAlbums[i];
         var imgPath="img/album/album_"+t.id;
         gridListContainer.innerHTML+=`
+                <a href="album-list-page.html">
                     <div class="grid-item" data-id="`+t.id+`" >
                             <div class="grid-play-btn" style=""><i class="fa fa-play" style="display:block;margin-top:auto;margin-bottom:auto;"></i></div>
                         <img src="`+imgPath+`" alt="">
                         <div class="grid-title">`+t.name+`</div>
                         <div class="grid-album"></div>
                     </div> 
+                </a>
         `;
     }    
 }

@@ -248,6 +248,18 @@ body::before{
 .volume-control{
     display: inline-block;
 }
+#volume-scale{
+    margin-left:5px;
+    width:80px;
+    display: inline-block;
+    background: linear-gradient(rgba(0,0,0,0) 40%, var(--color-font1)   50%, rgba(0,0,0,0) 60%);
+    text-align: left;
+}
+#volume-circle{
+    font-size:20px;
+    cursor: pointer;
+    color: var(--color-font1);
+}
 .player-timeline{
     display: inline-block;
     width:400px;
@@ -275,32 +287,7 @@ body::before{
     color:var(--color-font1);
 }
 
-/* form elements
-*/
-input[type=text] ,textarea{
-    width:90%;
-    margin:auto;
-    display: block;
-    border-radius: 10px 5px 10px 5px;
-    font-size: 18px;
-    padding: 5px;
-    padding-bottom: 0px;
-    color:#445511;
-    outline: none;
-    box-shadow: 0px 0px 4px green;
-    background:#f1f1f1;
-    resize:vertical;
-}
-input[type=submit]{
-    background-color: 263524;
-    color: white;
-    border: 2px solid #e7e7e7;
-    font-size: 22px;
-    margin-left:30px;
-    border-radius: 7px;
-    margin-top:5px;
-    cursor: pointer;
-}
+
 
 /*
 #backward{
@@ -319,9 +306,7 @@ input[type=submit]{
 #volume-button:hover{
 
 }
-#volume-scale{
 
-}
 
 /*  
 Equlizer Style Sheet
@@ -407,4 +392,199 @@ mylist css
     margin-top:auto;
     margin-bottom: auto;
     color:#202020;
+}
+
+
+/* form elements
+*/
+input[type=text] ,textarea,input[type=password],input[type=date]{
+    width:90%;
+    margin:auto;
+    display: block;
+    border-radius: 10px 5px 10px 5px;
+    font-size: 18px;
+    padding: 5px;
+    padding-bottom: 0px;
+    color:#445511;
+    outline: none;
+    box-shadow: 0px 0px 4px black;
+    background:#f1f1f1;
+    resize:vertical;
+}
+input[type=submit]{
+    background-color: 263524;
+    color: white;
+    border: 2px solid #e7e7e7;
+    font-size: 22px;
+    margin-left:30px;
+    border-radius: 7px;
+    margin:auto;
+    margin-top:20px;
+    cursor: pointer;
+    display: block;
+}
+
+/*
+Login/Signup popup 
+*/
+.login-popup{
+    background: white;
+    position: fixed;
+    z-index: 10;
+    display: block;
+    left:30%;
+    top:-200%;
+    width:30%;
+    padding: 3%;
+    border: 5px solid black; 
+    box-shadow: 0px 0px 25px black;
+    border-radius: 30px 15px 30px 15px;
+    display: block;
+}
+.signup-popup{
+    background: white;
+    position: fixed;
+    z-index: 10;
+    display: block;
+    left:30%;
+    top:-200%;
+    width:30%;
+    padding: 3%;
+    border: 5px solid black; 
+    box-shadow: 0px 0px 25px black;
+    border-radius: 30px 15px 30px 15px;
+    display: block;
+}
+.close-button{
+    color:black;
+    border-radius:50px;
+    border:2px solid black;
+    font-size:20px;
+    padding-left:5px;
+    padding-right:5px;
+    cursor: pointer;
+}
+.close-button:hover{
+    background: black;
+    color:white;
+}
+
+/*
+About page
+*/
+
+
+.discription-background{
+    float:left;
+    background:white;
+    max-width: 60%;
+    padding:15px;
+    opacity: 0.9;
+}
+.discription-title{
+    font-size: 35px;
+    color:#263955;
+    margin-bottom: 20px;
+    font-weight: bold;
+}
+.discription-content{
+    font-size: 18px;
+    font-family: Ringbearer;
+}
+.contact-form-background{
+    width:90%;
+    float:left;
+    background: white;
+    width:28%;
+    margin-left:50px;
+}
+.form-item-heading{
+    margin-left:20px;
+    font-size: 20px;
+    color:#263524;
+}
+form{
+    width:100%;
+}
+table{
+    width: inherit;
+
+}
+#contactFormTable{
+    width: 100%;
+}
+
+
+
+/* current Playlist */
+
+.current-playlist{
+    width: 350px;
+    height:50px;
+    float:right;
+    background: #555555;
+    border-left:2px solid white;
+}
+.current-playlist-item{
+    width:345px;
+    height:50px;
+    margin-bottom: 5px;
+    background:#555555;
+    cursor: pointer;
+    overflow: hidden;
+}
+.current-playlist-item:hover{
+    background: #999999;
+}
+.cpi-image img{
+    height:50px;
+    width:50px;
+    float:left;
+
+}
+.cpi-details{
+    color:white;
+    text-align:left;
+    float:left;
+}
+.cpi-title{
+    margin-left:5px;
+    font-size:22px;
+    padding:10px;
+}
+.playlist-container{
+    -border:1px solid gold;
+    position: absolute;
+    bottom:50px;
+    width:350px;
+    background:black;
+    overflow-y: scroll;
+    overflow-x: hidden;
+    height:500px;
+}
+
+
+
+/* home extra css  */ 
+.trending-album-area{
+    background: white;
+    margin-bottom: 30px;
+    width:97%;
+}
+.home-trending-title{
+    color:white;
+    font-size:22px;
+    text-decoration: underline;
+    padding: 10px;
+    border-bottom:3px solid white;
+    border:2px solid white;
+    background: black;
+}
+.sp-link{
+    text-decoration: none;
+    float:right;
+    
+}
+.sp-link:hover{
+    text-shadow: 1px 1px 4px grey;
 }
